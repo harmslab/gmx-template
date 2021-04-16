@@ -1,0 +1,54 @@
+Directories contain models of various LPS and LPS-like molecules. Generated
+using the charmm-gui LPS modeler tool.
+
+S. Jo, T. Kim, V.G. Iyer, and W. Im (2008)
+CHARMM-GUI: A Web-based Graphical User Interface for CHARMM. J. Comput. Chem. 29:1859-1865
+
+J. Lee, D.S. Patel, J. Ståhle, S-J. Park, N.R. Kern, S. Kim, J. Lee, X. Cheng, M.A. Valvano, O. Holst, Y. Knirel, Y. Qi, S. Jo, J.B. Klauda, G. Widmalm, and W. Im (2019)
+CHARMM-GUI Membrane Builder for Complex Biological Membrane Simulations with Glycolipids and Lipoglycans. J. Chem. Theory Comput. 15:775-786
+
+E. coli:
+    Type 1
+    K12
+    O1 o-antigen
+
+lipid iva:
+    Y. pestis type 2
+    No core  
+
+h. pylori:
+    Type 2
+    A 
+    Lex o-antigen
+
+lipid-iva: lipid-ivA
+e-coli_l: lipid-A
+e-coli_l-i: lipid-A, inner core (LPS R)
+e-coli_l-i-o: lipid-A, inner core, outer core (LPS Ra)
+e-coli_l-i-o-o1: lipid-A, inner core, outer core, 1xO-antigen (LPS S)
+e-coli_l-i-o-o5: lipid-A, inner core, outer core, 5xO-antigen (LPS S)
+h-hpylori_l-i-o: lipid-A, inner-core, outer-core
+
+forcefield conversion options: 
+uploaded all str from main directory, psf and crd
+Do not set up PBC
+system type: solution
+CHARMM36m
+GROMACS
+NPT 303.15
+
+J. Lee, M. Hitzenberger, M. Rieger, N.R. Kern, M. Zacharias, and W. Im (2020)
+CHARMM-GUI supports the Amber force fields. J. Chem. Phys. 153:035103
+
+
+Other directories:
+
+charmm36-feb2021.ff
+
+The CHARMM36m forcefield, ported to GROMACS. 
+http://mackerell.umaryland.edu/charmm_ff.shtml#gromacs
+
+mdp-files
+
+Template mdp files used for all runs
+
