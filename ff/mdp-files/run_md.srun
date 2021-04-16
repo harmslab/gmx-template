@@ -1,0 +1,29 @@
+#!/bin/bash -l
+#SBATCH --account=harmslab      ### change this to your actual account for charging
+#SBATCH --job-name=gmx_run      ### job name
+#SBATCH --output=hostname.out   ### file in which to store job stdout
+#SBATCH --error=hostname.err    ### file in which to store job stderr
+#SBATCH --partition=longfat
+#SBATCH --time=07-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=28
+
+module load intel/19
+module load gromacs/2019.4
+
+gmx grompp -f em.mdp -c system.gro -p topol.top -o em.tpr
+gmx mdrun -v -deffnm em
+
+gmx grompp -f nvt.mdp -c em.gro -r em.gro -p topol.top -o nvt.tpr
+gmx mdrun -deffnm nvt
+
+gmx grompp -f npt.mdp -c nvt.gro -r nvt.gro -t nvt.cpt -p topol.top -o npt.tpr
+gmx mdrun -deffnm npt
+
+gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -o md_0_1.tpr
+gmx mdrun -deffnm md_0_1 
+
+# To extend by 1 us, comment out stuff above and uncomment below
+#gmx convert-tpr -s md_0_1.tpr -extend 1000000 -o next.tpr
+#gmx mdrun -s next.tpr -cpi md_0_1.cpt  -deffnm md_0_1 -append
